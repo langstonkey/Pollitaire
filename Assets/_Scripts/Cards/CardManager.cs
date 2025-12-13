@@ -13,7 +13,6 @@ public class CardManager : MonoBehaviour
     public UnityEvent<Card> PointerUpEvent = new UnityEvent<Card>();
 
     public Card selectedCard;
-
     private void Awake()
     {
         if (Instance != null && Instance != this)
