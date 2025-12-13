@@ -27,8 +27,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     private Canvas canvas; //canvas reference used for scaling the mouse delta
     private RectTransform rect; //rect transform to set position and anchors
     private CanvasGroup canvasGroup; //canvas group to set alpha and toggle raycast while dragging
-    private CardGroup cardGroup; //card group that this is a part of
-    public void Start()
+    private CardGroup cardGroup; //card group that this is a part of\
+
+    public void Awake()
     {
         //Create a root so that it can set its local position to zero to reset its location
         GameObject root = new GameObject("Card Root");
@@ -36,7 +37,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         Root.SetParent(transform.parent, false);
         transform.SetParent(Root);
         transform.localPosition = Vector3.zero;
-
+    }
+    public void Start()
+    {
         cardGroup = GetComponentInParent<CardGroup>();
         canvas = GetComponentInParent<Canvas>();
         canvasGroup = GetComponent<CanvasGroup>();

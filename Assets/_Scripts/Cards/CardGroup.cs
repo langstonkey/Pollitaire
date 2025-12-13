@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class CardGroup : MonoBehaviour, IDropHandler
@@ -11,6 +12,9 @@ public class CardGroup : MonoBehaviour, IDropHandler
 
     [Header("Runtime")]
     [SerializeField, ReadOnly] List<Card> cards = new List<Card>();
+
+    public UnityEvent<Card> OnCardRemoved = new UnityEvent<Card>();
+    public UnityEvent<Card>  OnCardAdded = new UnityEvent<Card>();
 
     [Header("Debug")]
     [SerializeField] bool verbose;
@@ -22,7 +26,7 @@ public class CardGroup : MonoBehaviour, IDropHandler
         //init the group with any cards current in the group
         for (int i = 0; i < transform.childCount; i++)
         {
-            cards.Add(transform.GetChild(i).GetComponentInChildren<Card>());
+            AddCard(transform.GetChild(i).GetComponentInChildren<Card>());
         }
     }
     public void OnDrop(PointerEventData eventData)
@@ -60,12 +64,14 @@ public class CardGroup : MonoBehaviour, IDropHandler
     public void RemoveCard(Card card)
     {
         cards.Remove(card);
+        OnCardRemoved?.Invoke(card);
     }
 
     public void AddCard(Card card)
     {
         cards.Add(card);
         card.SetGroup(this);
+        OnCardAdded?.Invoke(card);
     }
 
     void TryLog(string message)
