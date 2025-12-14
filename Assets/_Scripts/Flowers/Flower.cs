@@ -5,7 +5,9 @@ public enum FlowerType
     Tulip,
     Rose,
     Daisy,
-    Peony
+    Peony,
+    Poppy,
+    Iris
 }
 
 public class Flower : MonoBehaviour

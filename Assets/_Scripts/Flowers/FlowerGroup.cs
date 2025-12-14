@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+[System.Serializable]
 public struct FlowerSet
 {
-    public List<Flower> flowers;
+    public List<FlowerType> flowerTypes;
 }
 
 public class FlowerGroup : MonoBehaviour
@@ -43,7 +44,7 @@ public class FlowerGroup : MonoBehaviour
         return true;
     }
 
-    public void PopulateFlowerSet(List<FlowerSet> set)
+    public void PopulateFlowerSets(List<FlowerSet> set)
     {
         flowerSets = set;
     }
