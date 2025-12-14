@@ -22,7 +22,23 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     [field: SerializeField, ReadOnly] public bool IsDragging { get; private set; }
     [field: SerializeField, ReadOnly] public bool IsHovering { get; private set; }
     [field: SerializeField, ReadOnly] public bool IsSelected { get; private set; }
-    [field: SerializeField, ReadOnly] public RectTransform Root { get; private set; }
+    [field: SerializeField, ReadOnly] public RectTransform Root
+    {
+        get
+        {
+            if (_root == null)
+            {
+                GameObject root = new GameObject("Card Root");
+                _root = root.AddComponent<RectTransform>();
+                _root.SetParent(transform.parent, false);
+                transform.SetParent(_root);
+                transform.localPosition = Vector3.zero;
+            }
+
+            return _root;
+        }
+    }
+    private RectTransform _root;
 
     private Canvas canvas; //canvas reference used for scaling the mouse delta
     private RectTransform rect; //rect transform to set position and anchors
@@ -32,11 +48,14 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void Awake()
     {
         //Create a root so that it can set its local position to zero to reset its location
-        GameObject root = new GameObject("Card Root");
-        Root = root.AddComponent<RectTransform>();
-        Root.SetParent(transform.parent, false);
-        transform.SetParent(Root);
-        transform.localPosition = Vector3.zero;
+        if (_root == null)
+        {
+            GameObject root = new GameObject("Card Root");
+            _root = root.AddComponent<RectTransform>();
+            _root.SetParent(transform.parent, false);
+            transform.SetParent(_root);
+            transform.localPosition = Vector3.zero;
+        }
     }
     public void Start()
     {
@@ -150,5 +169,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public CardGroup GetGroup() { return cardGroup;}
 
     #endregion
+
+    private void OnDestroy()
+    {
+        //also destory my root
+        Destroy(_root.gameObject);
+    }
 }
 

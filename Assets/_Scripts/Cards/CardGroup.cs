@@ -36,11 +36,11 @@ public class CardGroup : MonoBehaviour, IDropHandler
         if (card)
         {
             TryLog($"Card {card.name} Dropped On {name} Group");
-            AcceptCard(card);
+            TransferCard(card);
         }
     }
 
-    public void AcceptCard(Card card)
+    public void TransferCard(Card card)
     {
         //ignore if the card is already in the group
         if (cards.Contains(card))
@@ -67,11 +67,26 @@ public class CardGroup : MonoBehaviour, IDropHandler
         OnCardRemoved?.Invoke(card);
     }
 
+    public void DestroyCard(Card card)
+    {
+        cards.Remove(card);
+        Destroy(card.gameObject);
+    }
+
     public void AddCard(Card card)
     {
         cards.Add(card);
         card.SetGroup(this);
         OnCardAdded?.Invoke(card);
+    }
+
+    public void ClearGroup()
+    {
+        Card[] cardsToRemove = cards.ToArray();
+        for (int i = 0; i < cardsToRemove.Length; i++)
+        {
+            DestroyCard(cardsToRemove[i]);
+        }
     }
 
     void TryLog(string message)

@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class FlowerGroup : MonoBehaviour
 {
     [SerializeField] List<Flower> currentFlowers = new List<Flower>();
     [SerializeField] List<FlowerSet> flowerSets;
+    [SerializeField] CardGroup cardGroup;
+    [SerializeField] GameObject flowerCardPrefab;
 
     public void RemoveFlower(Card card)
     {
@@ -25,12 +28,28 @@ public class FlowerGroup : MonoBehaviour
         if (flower) currentFlowers.Add(flower);
     }
 
-
+    [Button]
     public void CheckFlowers()
     {
         if (FlowerTypesMatch())
         {
             //delete current flowers and get the next flower set if there are any.
+            cardGroup.ClearGroup();
+
+            if (flowerSets.Count > 0)
+            {
+                PopulateCardGroupWithFlowers(flowerSets[0].flowerTypes);
+                flowerSets.RemoveAt(0);
+            }
+        }
+    }
+
+    public void PopulateCardGroupWithFlowers(List<FlowerType> flowerTypes)
+    {
+        foreach (FlowerType type in flowerTypes)
+        {
+            Card card = Instantiate(flowerCardPrefab, cardGroup.transform).GetComponent<Card>();
+            cardGroup.AddCard(card);
         }
     }
 

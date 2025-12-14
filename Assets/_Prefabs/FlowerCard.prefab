@@ -110,7 +110,6 @@ MonoBehaviour:
   <IsDragging>k__BackingField: 0
   <IsHovering>k__BackingField: 0
   <IsSelected>k__BackingField: 0
-  <Root>k__BackingField: {fileID: 0}
 --- !u!114 &8451190038209878457
 MonoBehaviour:
   m_ObjectHideFlags: 0
