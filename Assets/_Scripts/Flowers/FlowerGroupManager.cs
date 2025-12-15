@@ -1,21 +1,35 @@
 using NaughtyAttributes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class FlowerGroupManager : MonoBehaviour
 {
+    public static FlowerGroupManager Instance;
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    [SerializeField] List<FlowerType> flowerTypes;
     [SerializeField] List<FlowerGroup> flowerGroups;
     [SerializeField] List<FlowerType> flowerDeck;
-    [SerializeField] int setSize = 3;
+    [field: SerializeField] public int SetSize { get; private set; }
     [SerializeField] int depth = 2;
 
     private void Start()
     {
         GenerateFlowerDeck();
         DealFlowerDeck();
+        InitFlowerGroups();
     }
 
     [Button]
@@ -25,11 +39,11 @@ public class FlowerGroupManager : MonoBehaviour
         flowerDeck.Clear();
         for (int i = 0; i < flowerGroups.Count; i++)
         {
-            int maxFlowerType = (int)Enum.GetValues(typeof(FlowerType)).Cast<FlowerType>().Max() + 1;
-            Debug.Log(maxFlowerType);
             for (int j = 0; j < depth; j++)
             {
-                flowerDeck.AddRange(CreateFlowerSet(setSize, (FlowerType)Mathf.Repeat(Random.Range(0, maxFlowerType) + depth, maxFlowerType)));
+                int randomIndex = Random.Range(0, flowerTypes.Count) + depth;
+                int index = (int)Mathf.Repeat(randomIndex, flowerTypes.Count);
+                flowerDeck.AddRange(CreateFlowerSet(SetSize, flowerTypes[index]));
             }
         }
     }
@@ -49,7 +63,7 @@ public class FlowerGroupManager : MonoBehaviour
                 flowerSet.flowerTypes = new List<FlowerType>();
 
                 //create as many flower types as there are set size
-                for (int k = 0; k < setSize; k++)
+                for (int k = 0; k < SetSize; k++)
                 {
                     //select a random flower from the flower deck and add it to the set and remove it from the deck
                     int randomIndex = Random.Range(0, flowerDeck.Count);
@@ -77,6 +91,16 @@ public class FlowerGroupManager : MonoBehaviour
         }
     }
 
+    [Button]
+    public void InitFlowerGroups()
+    {
+        foreach (FlowerGroup flowerGroup in flowerGroups)
+        {
+            flowerGroup.Init();
+        }
+    }
+
+
     public List<FlowerType> CreateFlowerSet(int size, FlowerType type)
     {
         List<FlowerType> typeList = new List<FlowerType>();
@@ -87,5 +111,10 @@ public class FlowerGroupManager : MonoBehaviour
         }
 
         return typeList;
+    }
+
+    public FlowerType GetRandomType()
+    {
+        return flowerTypes[Random.Range(0, flowerTypes.Count)];
     }
 }

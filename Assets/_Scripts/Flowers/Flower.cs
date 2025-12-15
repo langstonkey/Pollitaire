@@ -1,14 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-public enum FlowerType
-{
-    Tulip,
-    Rose,
-    Daisy,
-    Peony,
-    Poppy,
-    Iris
-}
 
 public class Flower : MonoBehaviour
 {
@@ -19,7 +10,7 @@ public class Flower : MonoBehaviour
 
     private void Start()
     {
-        Type = (FlowerType)Random.Range(0, 4);
+        Type = FlowerGroupManager.Instance.GetRandomType();
         image = GetComponent<Image>();
         SetColor();
     }
@@ -31,23 +22,6 @@ public class Flower : MonoBehaviour
 
     public void SetColor()
     {
-        switch (Type)
-        {
-            case FlowerType.Tulip:
-            image.color = Color.yellow;
-            break;
-
-            case FlowerType.Rose:
-            image.color = Color.red;
-            break;
-
-            case FlowerType.Daisy:
-            image.color = Color.white;
-            break;
-
-            case FlowerType.Peony:
-            image.color = Color.pink;
-            break;
-        }
+        image.color = Type.Color;
     }
 }
