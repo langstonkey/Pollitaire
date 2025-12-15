@@ -7,6 +7,9 @@ using UnityEngine.EventSystems;
 
 public class CardGroup : MonoBehaviour, IDropHandler
 {
+    [Header("References")]
+    [field: SerializeField] public RectTransform CardRoot { get; private set; }
+
     [Header("Settings")]
     [SerializeField] int cardsInGroup;
 
@@ -24,9 +27,9 @@ public class CardGroup : MonoBehaviour, IDropHandler
         cards.Clear();
 
         //init the group with any cards current in the group
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < CardRoot.childCount; i++)
         {
-            AddCard(transform.GetChild(i).GetComponentInChildren<Card>());
+            AddCard(CardRoot.GetChild(i).GetComponentInChildren<Card>());
         }
     }
     public void OnDrop(PointerEventData eventData)
