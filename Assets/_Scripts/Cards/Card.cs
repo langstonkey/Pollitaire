@@ -9,10 +9,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     [Header("Visuals")]
     [Tooltip("Wether or not to instantiate a seperate visual")]
     [SerializeField] protected bool instantiateVisual = true;
-    [Tooltip("Prefab to instantiate")]
-    [SerializeField] protected GameObject cardVisualPrefab;
     [Tooltip("Card visual reference associated with prefab")]
-    [SerializeField, ReadOnly] public Transform cardVisualRoot;
+    [SerializeField] public Transform cardVisual;
 
     [Header("References")]
     [SerializeField] private RectTransform root;
@@ -37,6 +35,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         canvas = GetComponentInParent<Canvas>();
         canvasGroup = GetComponent<CanvasGroup>();
         rect = GetComponent<RectTransform>();
+        if (cardVisual) cardVisual.SetParent(CardManager.Instance.CardVisualRoot);
     }
 
     #region Drag & Drop Logic
@@ -129,6 +128,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         //ensure its left click
         if (eventData.button != PointerEventData.InputButton.Left) return;
+
+        cardVisual.SetAsLastSibling();
     }
 
     #endregion
@@ -148,6 +149,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         //also destory my root
         Destroy(root.gameObject);
+        Destroy(cardVisual.gameObject);
     }
 }
 

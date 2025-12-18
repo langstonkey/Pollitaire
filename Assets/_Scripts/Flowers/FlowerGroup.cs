@@ -14,7 +14,7 @@ public struct FlowerSet
 
 public class FlowerGroup : MonoBehaviour
 {
-    [SerializeField] List<Flower> currentFlowers = new List<Flower>();
+    [SerializeField] List<FlowerCard> currentFlowers = new List<FlowerCard>();
     [SerializeField] List<FlowerSet> flowerSets;
     [SerializeField] CardGroup cardGroup;
     [SerializeField] GameObject flowerCardPrefab;
@@ -29,12 +29,12 @@ public class FlowerGroup : MonoBehaviour
 
     public void RemoveFlower(Card card)
     {
-        Flower flower = card.GetComponent<Flower>();
+        FlowerCard flower = card.GetComponent<FlowerCard>();
         if (flower) currentFlowers.Remove(flower);
     }
     public void AddFlower(Card card)
     {
-        Flower flower = card.GetComponent<Flower>();
+        FlowerCard flower = card.GetComponent<FlowerCard>();
         if (flower) currentFlowers.Add(flower);
     }
 
@@ -68,6 +68,8 @@ public class FlowerGroup : MonoBehaviour
         {
             yield return new WaitForSeconds(flowerDelay);
             Card card = Instantiate(flowerCardPrefab, cardGroup.transform).GetComponentInChildren<Card>();
+            FlowerCard flowerCard = card.GetComponent<FlowerCard>();
+            flowerCard.SetFlowerType(type);
             cardGroup.AddCard(card);
         }
     }

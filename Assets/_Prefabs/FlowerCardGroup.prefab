@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5893740928524739723
+--- !u!1 &4136831677964536456
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8038478966160667006}
-  - component: {fileID: 3965615992189274477}
-  - component: {fileID: 7984419768837142687}
-  - component: {fileID: 705675539676456927}
-  - component: {fileID: 112979863617245755}
-  - component: {fileID: 880053386115464098}
+  - component: {fileID: 4345974716190314621}
+  - component: {fileID: 549419509449070803}
+  - component: {fileID: 7705231402249273772}
+  - component: {fileID: 781684764523220925}
+  - component: {fileID: 4761299330096917708}
   m_Layer: 5
   m_Name: FlowerCardGroup
   m_TagString: Untagged
@@ -21,45 +20,45 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &8038478966160667006
+--- !u!224 &4345974716190314621
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893740928524739723}
+  m_GameObject: {fileID: 4136831677964536456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6186129736772434570}
+  - {fileID: 1012601834741480449}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 439.72, y: 156.9}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3965615992189274477
+--- !u!114 &549419509449070803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893740928524739723}
+  m_GameObject: {fileID: 4136831677964536456}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61b311ee2cc5afe44b84dbff4c6f6c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardGroup
-  <CardRoot>k__BackingField: {fileID: 6186129736772434570}
+  <CardRoot>k__BackingField: {fileID: 1012601834741480449}
   cardsInGroup: 3
   cards: []
   OnCardRemoved:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 880053386115464098}
+      - m_Target: {fileID: 4761299330096917708}
         m_TargetAssemblyTypeName: FlowerGroup, Assembly-CSharp
         m_MethodName: RemoveFlower
         m_Mode: 0
@@ -74,7 +73,7 @@ MonoBehaviour:
   OnCardAdded:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 880053386115464098}
+      - m_Target: {fileID: 4761299330096917708}
         m_TargetAssemblyTypeName: FlowerGroup, Assembly-CSharp
         m_MethodName: AddFlower
         m_Mode: 0
@@ -86,7 +85,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 880053386115464098}
+      - m_Target: {fileID: 4761299330096917708}
         m_TargetAssemblyTypeName: FlowerGroup, Assembly-CSharp
         m_MethodName: CheckFlowers
         m_Mode: 1
@@ -99,47 +98,21 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   verbose: 1
---- !u!114 &7984419768837142687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893740928524739723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
---- !u!222 &705675539676456927
+--- !u!222 &7705231402249273772
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893740928524739723}
+  m_GameObject: {fileID: 4136831677964536456}
   m_CullTransparentMesh: 1
---- !u!114 &112979863617245755
+--- !u!114 &781684764523220925
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893740928524739723}
+  m_GameObject: {fileID: 4136831677964536456}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -163,13 +136,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &880053386115464098
+--- !u!114 &4761299330096917708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893740928524739723}
+  m_GameObject: {fileID: 4136831677964536456}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d3521dccbeff674fbffa7075360dbc0, type: 3}
@@ -177,10 +150,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FlowerGroup
   currentFlowers: []
   flowerSets: []
-  cardGroup: {fileID: 3965615992189274477}
-  flowerCardPrefab: {fileID: 1878201626829307496, guid: e3b5a41be7538c945af845037176f8e3, type: 3}
+  cardGroup: {fileID: 549419509449070803}
+  flowerCardPrefab: {fileID: 1944589925127659149, guid: 7ec4f82f3b9582546b6f3e350741b3a9, type: 3}
   flowerDelay: 0.25
---- !u!1 &6648973584973208518
+--- !u!1 &7309722863819600131
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,7 +161,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6186129736772434570}
+  - component: {fileID: 1012601834741480449}
+  - component: {fileID: 1901225920634159866}
   m_Layer: 5
   m_Name: CardRoot
   m_TagString: Untagged
@@ -196,22 +170,48 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &6186129736772434570
+--- !u!224 &1012601834741480449
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6648973584973208518}
+  m_GameObject: {fileID: 7309722863819600131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8038478966160667006}
+  m_Father: {fileID: 4345974716190314621}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0.000015258789, y: 0}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &1901225920634159866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7309722863819600131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0

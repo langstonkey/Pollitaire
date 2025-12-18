@@ -13,6 +13,7 @@ public class CardManager : MonoBehaviour
     public UnityEvent<Card> PointerUpEvent = new UnityEvent<Card>();
 
     public Card selectedCard;
+    [field: SerializeField] public Transform CardVisualRoot { get; private set; }
     private void Awake()
     {
         if (Instance != null && Instance != this)

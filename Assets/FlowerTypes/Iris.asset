@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Iris
   m_EditorClassIdentifier: Assembly-CSharp::FlowerType
   Name: Iris
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: ca533dcbf9cfb20458796fc31bece962, type: 3}
   Color: {r: 0.73050714, g: 0.24705881, b: 1, a: 1}

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Tulip
   m_EditorClassIdentifier: Assembly-CSharp::FlowerType
   Name: Tulip
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 451eba2a85bdbe540a38840ed56aeb94, type: 3}
   Color: {r: 1, g: 0.8094162, b: 0.33018857, a: 1}

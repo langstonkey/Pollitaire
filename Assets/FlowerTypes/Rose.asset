@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Rose
   m_EditorClassIdentifier: Assembly-CSharp::FlowerType
   Name: Rose
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 70bb5f86cc9d65b449bbbc5d3af3cf84, type: 3}
   Color: {r: 0.86415094, g: 0.08967595, b: 0.11142024, a: 1}

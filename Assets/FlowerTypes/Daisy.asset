@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Daisy
   m_EditorClassIdentifier: Assembly-CSharp::FlowerType
   Name: Daisy
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: e3547e2735b155a4aa41b1d1ac7f2cb0, type: 3}
   Color: {r: 1, g: 0.95728785, b: 0.8509433, a: 1}

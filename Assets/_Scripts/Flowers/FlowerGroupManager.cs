@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 public class FlowerGroupManager : MonoBehaviour
 {
     public static FlowerGroupManager Instance;
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)

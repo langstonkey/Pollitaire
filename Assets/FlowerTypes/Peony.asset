@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Peony
   m_EditorClassIdentifier: Assembly-CSharp::FlowerType
   Name: Peony
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: ef2f996897beff640b7a055d4580f4aa, type: 3}
   Color: {r: 0.8867924, g: 0.6073691, b: 0.86895883, a: 1}
