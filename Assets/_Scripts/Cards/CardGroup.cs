@@ -17,7 +17,7 @@ public class CardGroup : MonoBehaviour, IDropHandler
     [SerializeField, ReadOnly] List<Card> cards = new List<Card>();
 
     public UnityEvent<Card> OnCardRemoved = new UnityEvent<Card>();
-    public UnityEvent<Card>  OnCardAdded = new UnityEvent<Card>();
+    public UnityEvent<Card, bool>  OnCardAdded = new UnityEvent<Card, bool>();
 
     [Header("Debug")]
     [SerializeField] bool verbose;
@@ -29,7 +29,7 @@ public class CardGroup : MonoBehaviour, IDropHandler
         //init the group with any cards current in the group
         for (int i = 0; i < CardRoot.childCount; i++)
         {
-            AddCard(CardRoot.GetChild(i).GetComponentInChildren<Card>());
+            AddCard(CardRoot.GetChild(i).GetComponentInChildren<Card>(), true);
         }
     }
     public void OnDrop(PointerEventData eventData)
@@ -76,11 +76,11 @@ public class CardGroup : MonoBehaviour, IDropHandler
         Destroy(card.gameObject);
     }
 
-    public void AddCard(Card card)
+    public void AddCard(Card card, bool autoAdded = false)
     {
         cards.Add(card);
         card.SetGroup(this);
-        OnCardAdded?.Invoke(card);
+        OnCardAdded?.Invoke(card, autoAdded);
     }
 
     public void ClearGroup()

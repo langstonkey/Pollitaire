@@ -34,7 +34,7 @@ public class FlowerGroup : MonoBehaviour
         FlowerCard flower = card.GetComponent<FlowerCard>();
         if (flower) currentFlowers.Remove(flower);
     }
-    public void AddFlower(Card card)
+    public void AddFlower(Card card, bool autoAdded)
     {
         FlowerCard flower = card.GetComponent<FlowerCard>();
         if (flower) currentFlowers.Add(flower);
@@ -86,7 +86,7 @@ public class FlowerGroup : MonoBehaviour
             Card card = Instantiate(flowerCardPrefab, cardGroup.transform).GetComponentInChildren<Card>();
             FlowerCard flowerCard = card.GetComponent<FlowerCard>();
             flowerCard.SetFlowerType(type);
-            cardGroup.AddCard(card);
+            cardGroup.AddCard(card, true);
         }
     }
 

@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class FlowerGroupManager : MonoBehaviour
@@ -26,6 +27,8 @@ public class FlowerGroupManager : MonoBehaviour
     [SerializeField] List<FlowerType> flowerDeck;
     [field: SerializeField] public int SetSize { get; private set; }
     [SerializeField] int depth = 2;
+
+    public UnityEvent OnGroupsComplete;
 
     private void Start()
     {
@@ -102,7 +105,6 @@ public class FlowerGroupManager : MonoBehaviour
         }
     }
 
-
     public List<FlowerType> CreateFlowerSet(int size, FlowerType type)
     {
         List<FlowerType> typeList = new List<FlowerType>();
@@ -118,5 +120,23 @@ public class FlowerGroupManager : MonoBehaviour
     public FlowerType GetRandomType()
     {
         return flowerTypes[Random.Range(0, flowerTypes.Count)];
+    }
+
+    public void CheckFlowerGroups()
+    {
+        if (FlowerGroupsComplete())
+        {
+            OnGroupsComplete?.Invoke();
+        }
+    }
+
+    public bool FlowerGroupsComplete()
+    {
+        foreach (FlowerGroup group in flowerGroups)
+        {
+            if (group.gameObject.activeInHierarchy) return false;
+        }
+
+        return true;
     }
 }

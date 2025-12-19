@@ -5,9 +5,18 @@ using UnityEngine;
 
 public class UserInterfaceManager : MonoBehaviour
 {
+    [Header("HUD")]
     [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] TextMeshProUGUI movesText;
+
+    [Header("Pause")]
     [SerializeField] GameObject pausePanel;
+
+    [Header("Win Screen")]
+    [SerializeField] GameObject winPanel;
+    [SerializeField] TextMeshProUGUI winScreenStats;
+    [SerializeField] TextMeshProUGUI[] winTitle;
+
 
     [SerializeField, ReadOnly] float currentTime;
     [SerializeField, ReadOnly] int moves;
@@ -37,11 +46,13 @@ public class UserInterfaceManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0f;
+        pausePanel.SetActive(true);
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1f;
+        pausePanel.SetActive(false);
     }
 
     public void ResetStats()
@@ -50,9 +61,22 @@ public class UserInterfaceManager : MonoBehaviour
         moves = 0;
     }
 
-    public void MakeMove()
+    public void ShowWinScreen()
     {
+        StopAllCoroutines();
+
+        winPanel.SetActive(true);
+
+        winScreenStats.text = $"Moves: {moves}\n" +
+                              $"Time: {timeText.text}";
+    }
+
+    public void MakeMove(Card card, bool autoAdded)
+    {
+        if (autoAdded) return;
+
         moves++;
+
         if (moves > 99)
         {
             movesText.text = $"{moves}";
