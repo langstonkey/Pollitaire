@@ -1,7 +1,9 @@
 using DG.Tweening;
 using NaughtyAttributes;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class FlowerCardVisual : MonoBehaviour
 {
@@ -9,15 +11,25 @@ public class FlowerCardVisual : MonoBehaviour
     [SerializeField] Transform followTarget;
     [SerializeField] Image flowerImage;
 
-    private void Update()
+    IEnumerator FollowTarget()
     {
-        if (followTarget == null) return;
-        transform.position = Vector3.Lerp(transform.position, followTarget.position, followSpeed * Time.deltaTime);
+        while (true)
+        {
+            if (followTarget == null) break;
+            transform.position = Vector3.Lerp(transform.position, followTarget.position, followSpeed * Time.deltaTime);
+            yield return null;
+        }
     }
 
     public void SetFlowerVisual(FlowerCard flower, Transform target)
     {
         flowerImage.sprite = flower.Type.Sprite;
         followTarget = target;
+        StartCoroutine(FollowTarget());
+    }
+
+    public void SetFlowerVisual(FlowerType flower)
+    {
+        flowerImage.sprite = flower.Sprite;
     }
 }

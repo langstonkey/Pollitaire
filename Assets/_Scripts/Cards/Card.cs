@@ -139,7 +139,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void SetGroup(CardGroup group)
     {
         cardGroup = group;
-        root.SetParent(group.transform, false);
+        root.SetParent(group.CardRoot, false);
     }
     public CardGroup GetGroup() { return cardGroup;}
 

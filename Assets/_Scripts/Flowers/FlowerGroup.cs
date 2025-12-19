@@ -18,6 +18,8 @@ public class FlowerGroup : MonoBehaviour
     [SerializeField] List<FlowerSet> flowerSets;
     [SerializeField] CardGroup cardGroup;
     [SerializeField] GameObject flowerCardPrefab;
+    [SerializeField] GameObject flowerPreviewPrefab;
+    [SerializeField] RectTransform previewRoot;
 
     [Header("Visuals")]
     [SerializeField] float flowerDelay = 0.5f;
@@ -47,7 +49,14 @@ public class FlowerGroup : MonoBehaviour
             cardGroup.ClearGroup();
             currentFlowers.Clear();
 
-            StartCoroutine(PopulateNextFlowerSet());
+            if (flowerSets.Count > 0)
+            {
+                StartCoroutine(PopulateNextFlowerSet());
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 
@@ -55,10 +64,17 @@ public class FlowerGroup : MonoBehaviour
     {
         yield return null;
 
+        //clear preview if there is one
+        StartCoroutine(ClearPreview());
+
+        StartCoroutine(PopulateCardGroupWithFlowers(flowerSets[0].flowerTypes.ToList()));
+        flowerSets.RemoveAt(0);
+
+        //if there are still flower sets remaining after this one gets populated
         if (flowerSets.Count > 0)
         {
-            StartCoroutine(PopulateCardGroupWithFlowers(flowerSets[0].flowerTypes.ToList()));
-            flowerSets.RemoveAt(0);
+            yield return new WaitForSeconds(flowerDelay * FlowerGroupManager.Instance.SetSize);
+            StartCoroutine(PopulatePreviewWithFlowers(flowerSets[0].flowerTypes.ToList()));
         }
     }
 
@@ -71,6 +87,35 @@ public class FlowerGroup : MonoBehaviour
             FlowerCard flowerCard = card.GetComponent<FlowerCard>();
             flowerCard.SetFlowerType(type);
             cardGroup.AddCard(card);
+        }
+    }
+
+    IEnumerator PopulatePreviewWithFlowers(List<FlowerType> flowerTypes)
+    {
+        foreach (FlowerType type in flowerTypes)
+        {
+            yield return new WaitForSeconds(flowerDelay);
+            FlowerCardVisual visual = Instantiate(flowerPreviewPrefab, previewRoot).GetComponentInChildren<FlowerCardVisual>();
+            visual.SetFlowerVisual(type);
+        }
+    }
+
+    IEnumerator ClearPreview()
+    {
+        List<GameObject> children = new List<GameObject>();
+
+        //populate seperate list of children
+        for (int i  = 0; i < previewRoot.childCount; i++)
+        {
+            children.Add(previewRoot.GetChild(i).gameObject);
+        }
+
+        //put it into an array to destroy
+        GameObject[] childrenToDestroy = children.ToArray();
+        for (int i = 0; i < childrenToDestroy.Length; i++)
+        {
+            yield return new WaitForSeconds(flowerDelay);
+            Destroy(childrenToDestroy[i]);
         }
     }
 
