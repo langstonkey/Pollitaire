@@ -1,3 +1,7 @@
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,6 +19,9 @@ public class CardManager : MonoBehaviour
     public Card selectedCard;
     [field: SerializeField] public Transform CardVisualRoot { get; private set; }
     [field: SerializeField] public float LayoutScale { get; private set; }
+
+    [SerializeField] List<CardGroup> groups = new List<CardGroup>();
+    [SerializeField] GridLayout[] groupLayouts;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -24,6 +31,21 @@ public class CardManager : MonoBehaviour
         else
         {
             Instance = this;
+        }
+    }
+
+    public void Start()
+    {
+        groups = GetComponentsInChildren<CardGroup>().ToList();
+
+        foreach (CardGroup group in groups)
+        {
+            group.transform.localScale = Vector3.one * LayoutScale;
+        }
+
+        foreach (GridLayout layout in groupLayouts)
+        {
+
         }
     }
 }

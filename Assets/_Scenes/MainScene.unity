@@ -1590,6 +1590,8 @@ MonoBehaviour:
   selectedCard: {fileID: 0}
   <CardVisualRoot>k__BackingField: {fileID: 1872198907}
   <LayoutScale>k__BackingField: 1
+  groups: []
+  groupLayouts: []
 --- !u!114 &393283144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1607,8 +1609,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cbc4bb9600ba0314cacacaba6a3f4d28, type: 2}
   - {fileID: 11400000, guid: 01528c13e43755043bb24982cc16424a, type: 2}
   - {fileID: 11400000, guid: d4fd170cbd705ad428e13c24cdc8f9bf, type: 2}
-  - {fileID: 11400000, guid: c8bbda8656712d844b8a48a184a3d750, type: 2}
-  - {fileID: 11400000, guid: 250f1314818d5974799ebc6bb7b5f9ba, type: 2}
   flowerGroups:
   - {fileID: 880053386489722219}
   - {fileID: 828450830}
@@ -1618,7 +1618,7 @@ MonoBehaviour:
   - {fileID: 250664504}
   flowerDeck: []
   <SetSize>k__BackingField: 3
-  depth: 2
+  depth: 1
   OnGroupsComplete:
     m_PersistentCalls:
       m_Calls:

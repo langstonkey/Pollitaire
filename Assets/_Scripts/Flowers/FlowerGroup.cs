@@ -1,3 +1,4 @@
+using DG.Tweening;
 using NaughtyAttributes;
 using NUnit.Framework;
 using System.Collections;
@@ -58,11 +59,21 @@ public class FlowerGroup : MonoBehaviour
             }
             else
             {
-                gameObject.SetActive(false);
+                StartCoroutine(Shrink());
             }
 
-            OnGroupComplete?.Invoke();
         }
+    }
+
+    IEnumerator Shrink()
+    {
+        transform.DOScale(Vector3.one * 1.1f, 0.2f);
+        transform.DOPunchRotation(Vector3.one * 15, 0.5f);
+        yield return new WaitForSeconds(0.2f);
+        transform.DOScale(0, 0.3f);
+        yield return new WaitForSeconds(0.3f);
+        gameObject.SetActive(false);
+        OnGroupComplete?.Invoke();
     }
 
     IEnumerator PopulateNextFlowerSet()

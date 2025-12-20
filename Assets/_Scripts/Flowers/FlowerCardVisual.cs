@@ -11,6 +11,12 @@ public class FlowerCardVisual : MonoBehaviour
     [SerializeField] Transform followTarget;
     [SerializeField] Image flowerImage;
 
+
+    public void Start()
+    {
+        transform.localPosition = Vector3.zero;
+    }
+
     IEnumerator FollowTarget()
     {
         while (true)
