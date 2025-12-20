@@ -62,7 +62,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
         IsDragging = true;
 
-        rect.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        rect.anchoredPosition += (eventData.delta / canvas.scaleFactor) / CardManager.Instance.LayoutScale;
     }
 
     public void OnEndDrag(PointerEventData eventData)

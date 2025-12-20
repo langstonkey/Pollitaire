@@ -14,6 +14,7 @@ public class CardManager : MonoBehaviour
 
     public Card selectedCard;
     [field: SerializeField] public Transform CardVisualRoot { get; private set; }
+    [field: SerializeField] public float LayoutScale { get; private set; }
     private void Awake()
     {
         if (Instance != null && Instance != this)
