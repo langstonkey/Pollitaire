@@ -1,22 +1,23 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 public class StatsManager : MonoBehaviour
 {
-    public static StatsManager Instance;
-
-    private void Awake()
+    public static int Wins = 0;
+    private void Start()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
-        
-        DontDestroyOnLoad(gameObject);
+        Wins = PlayerPrefs.GetInt("Wins");
     }
 
+    public static void AddWin()
+    {
+        Wins++;
+        PlayerPrefs.SetInt("Wins", Wins);
+    }
 
+    [Button]
+    public void ResetStats()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }

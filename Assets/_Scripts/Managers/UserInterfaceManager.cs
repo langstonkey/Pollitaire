@@ -67,7 +67,21 @@ public class UserInterfaceManager : MonoBehaviour
 
         winPanel.SetActive(true);
 
-        winScreenStats.text = $"Moves: {moves}\n" +
+        StatsManager.AddWin();
+
+        string winText = "";
+
+        if (moves > 9)
+        {
+            winText = $"{StatsManager.Wins}";
+        }
+        else
+        {
+            winText = $"0{StatsManager.Wins}";
+        }
+
+        winScreenStats.text = $"Total Wins: {StatsManager.Wins}\n" +
+                              $"Moves: {moves}\n" +
                               $"Time: {timeText.text}";
     }
 

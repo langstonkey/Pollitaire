@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 [System.Serializable]
@@ -23,6 +24,8 @@ public class FlowerGroup : MonoBehaviour
 
     [Header("Visuals")]
     [SerializeField] float flowerDelay = 0.5f;
+
+    public UnityEvent OnGroupComplete;
 
     public void Init()
     {
@@ -57,6 +60,8 @@ public class FlowerGroup : MonoBehaviour
             {
                 gameObject.SetActive(false);
             }
+
+            OnGroupComplete?.Invoke();
         }
     }
 
