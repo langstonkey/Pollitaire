@@ -1,8 +1,10 @@
+using DG.Tweening;
 using NaughtyAttributes;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UserInterfaceManager : MonoBehaviour
 {
@@ -12,11 +14,14 @@ public class UserInterfaceManager : MonoBehaviour
 
     [Header("Pause")]
     [SerializeField] GameObject pausePanel;
+    [SerializeField] Image pauseButton;
 
     [Header("Win Screen")]
     [SerializeField] GameObject winPanel;
     [SerializeField] TextMeshProUGUI winScreenStats;
     [SerializeField] TextMeshProUGUI[] winTitle;
+    [SerializeField] TextMeshProUGUI restartButton;
+    [SerializeField] TextMeshProUGUI mainMenuButton;
 
 
     [SerializeField, ReadOnly] float currentTime;
@@ -66,11 +71,10 @@ public class UserInterfaceManager : MonoBehaviour
     {
         StopAllCoroutines();
 
-        winPanel.SetActive(true);
-
-        StatsManager.AddWin();
 
         string winText = "";
+
+        StatsManager.AddWin();
 
         if (moves > 9)
         {
@@ -84,6 +88,54 @@ public class UserInterfaceManager : MonoBehaviour
         winScreenStats.text = $"Total Wins: {StatsManager.Wins}\n" +
                               $"Moves: {moves}\n" +
                               $"Time: {timeText.text}";
+
+        StartCoroutine(WinScreenRoutine());
+    }
+
+
+    IEnumerator WinScreenRoutine()
+    {
+        timeText.DOFade(0, 0.2f);
+        movesText.DOFade(0, 0.2f);
+        pauseButton.DOFade(0, 0.2f);
+        ClearWinScreen();
+        winPanel.SetActive(true);
+
+        foreach (TextMeshProUGUI letter in winTitle)
+        {
+            letter.transform.DOPunchScale(Vector3.one, 0.2f);
+            letter.transform.DOPunchRotation(Vector3.one * 45, 0.2f);
+            letter.DOFade(1, 0.2f);
+            yield return new WaitForSeconds(Random.Range(0.05f, 0.15f));
+        }
+
+        winScreenStats.transform.DOPunchRotation(Vector3.one * 25, 0.2f);
+        winScreenStats.transform.DOPunchScale(Vector3.one * 0.5f, 0.2f);
+        winScreenStats.DOFade(1, 0.2f);
+        yield return new WaitForSeconds(0.2f);
+
+        restartButton.transform.DOPunchRotation(Vector3.one * 25, 0.2f);
+        restartButton.transform.DOPunchScale(Vector3.one * 0.5f, 0.2f);
+        restartButton.DOFade(1, 0.2f);
+
+        yield return new WaitForSeconds(0.1f);
+        mainMenuButton.transform.DOPunchRotation(Vector3.one * 25, 0.2f);
+        mainMenuButton.transform.DOPunchScale(Vector3.one * 0.5f, 0.2f);
+        mainMenuButton.DOFade(1, 0.2f);
+
+    }
+
+    public void ClearWinScreen()
+    {
+        foreach (TextMeshProUGUI letter in winTitle)
+        {
+            letter.color = Color.clear;
+        }
+
+        Color clearWhite = new Color(1, 1, 1, 0);
+        winScreenStats.color = clearWhite;
+        restartButton.color = clearWhite;
+        mainMenuButton.color = clearWhite;
     }
 
     public void MakeMove(Card card, bool autoAdded)

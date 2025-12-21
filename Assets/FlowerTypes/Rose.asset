@@ -15,3 +15,4 @@ MonoBehaviour:
   Name: Rose
   Sprite: {fileID: 21300000, guid: 70bb5f86cc9d65b449bbbc5d3af3cf84, type: 3}
   Color: {r: 0.86415094, g: 0.08967595, b: 0.11142024, a: 1}
+  ParticleEffect: {fileID: 1000405487277846091, guid: 6f58269f83e36d6489997577c353768f, type: 3}

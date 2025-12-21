@@ -15,3 +15,4 @@ MonoBehaviour:
   Name: Daisy
   Sprite: {fileID: 21300000, guid: e3547e2735b155a4aa41b1d1ac7f2cb0, type: 3}
   Color: {r: 1, g: 0.95728785, b: 0.8509433, a: 1}
+  ParticleEffect: {fileID: 1000405487277846091, guid: 6f58269f83e36d6489997577c353768f, type: 3}

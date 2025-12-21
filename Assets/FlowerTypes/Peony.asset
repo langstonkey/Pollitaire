@@ -15,3 +15,4 @@ MonoBehaviour:
   Name: Peony
   Sprite: {fileID: 21300000, guid: ef2f996897beff640b7a055d4580f4aa, type: 3}
   Color: {r: 0.8867924, g: 0.6073691, b: 0.86895883, a: 1}
+  ParticleEffect: {fileID: 1000405487277846091, guid: 6f58269f83e36d6489997577c353768f, type: 3}
