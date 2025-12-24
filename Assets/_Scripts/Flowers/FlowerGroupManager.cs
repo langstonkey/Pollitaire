@@ -20,6 +20,8 @@ public class FlowerGroupManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        depth = StatsManager.Depth;
     }
 
     [SerializeField] List<FlowerType> flowerTypes;
@@ -46,8 +48,8 @@ public class FlowerGroupManager : MonoBehaviour
         {
             for (int j = 0; j < depth; j++)
             {
-                int randomIndex = Random.Range(0, flowerTypes.Count) + depth;
-                int index = (int)Mathf.Repeat(randomIndex, flowerTypes.Count);
+                int randomIndex = Random.Range(0, StatsManager.Types) + depth;
+                int index = (int)Mathf.Repeat(randomIndex, StatsManager.Types);
                 flowerDeck.AddRange(CreateFlowerSet(SetSize, flowerTypes[index]));
             }
         }

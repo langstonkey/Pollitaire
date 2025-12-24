@@ -4,9 +4,17 @@ using UnityEngine;
 public class StatsManager : MonoBehaviour
 {
     public static int Wins = 0;
-    private void Start()
+    public static int Depth = 2;
+    public static int Types = 6;
+
+
+    private void Awake()
     {
         Wins = PlayerPrefs.GetInt("Wins");
+        Depth = PlayerPrefs.GetInt("Depth");
+        Types = PlayerPrefs.GetInt("Types");
+        if (Types == 0) SetTypes(6);
+        if (Depth == 0) SetTypes(2);
     }
 
     public static void AddWin()
@@ -14,6 +22,52 @@ public class StatsManager : MonoBehaviour
         Wins++;
         PlayerPrefs.SetInt("Wins", Wins);
     }
+
+    public static void SetDepth(int depth)
+    {
+        Depth = depth;
+        PlayerPrefs.SetInt("Depth", depth);
+    }
+
+    public static void AddDepth()
+    {
+        Depth++;
+        SetDepth(Depth);
+    }
+
+    public static void SubDepth()
+    {
+        if (Depth > 1)
+        {
+            Depth--;
+            SetDepth(Depth);
+        }
+    }
+
+    public static void SetTypes(int types)
+    {
+        Types = types;
+        PlayerPrefs.SetInt("Types", types);
+    }
+
+    public static void AddTypes()
+    {
+        if (Types < 6)
+        {
+            Types++;
+            SetTypes(Types);
+        }
+    }
+
+    public static void SubTypes()
+    {
+        if (Types > 2)
+        {
+            Types--;
+            SetTypes(Types);
+        }
+    }
+
 
     [Button]
     public void ResetStats()

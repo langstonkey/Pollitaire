@@ -1609,6 +1609,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cbc4bb9600ba0314cacacaba6a3f4d28, type: 2}
   - {fileID: 11400000, guid: 01528c13e43755043bb24982cc16424a, type: 2}
   - {fileID: 11400000, guid: d4fd170cbd705ad428e13c24cdc8f9bf, type: 2}
+  - {fileID: 11400000, guid: c8bbda8656712d844b8a48a184a3d750, type: 2}
+  - {fileID: 11400000, guid: 250f1314818d5974799ebc6bb7b5f9ba, type: 2}
   flowerGroups:
   - {fileID: 880053386489722219}
   - {fileID: 828450830}
@@ -1673,6 +1675,7 @@ MonoBehaviour:
   timeText: {fileID: 1772528634}
   movesText: {fileID: 885007432}
   pausePanel: {fileID: 1455837604}
+  pauseButton: {fileID: 0}
   winPanel: {fileID: 2042020634}
   winScreenStats: {fileID: 839525469}
   winTitle:

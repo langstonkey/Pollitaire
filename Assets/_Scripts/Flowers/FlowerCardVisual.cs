@@ -46,7 +46,9 @@ public class FlowerCardVisual : MonoBehaviour
 
     public void OnDestroy()
     {
+        if (particleEffect == null) return;
         Transform effectTransform = Instantiate(particleEffect, transform.parent).transform;
+
         effectTransform.position = transform.position;
 
         Image effectImage = effectTransform.GetComponent<Image>();
