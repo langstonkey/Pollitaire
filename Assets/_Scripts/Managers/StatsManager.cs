@@ -10,9 +10,10 @@ public class StatsManager : MonoBehaviour
 
     private void Awake()
     {
-        Wins = PlayerPrefs.GetInt("Wins");
-        Depth = PlayerPrefs.GetInt("Depth");
-        Types = PlayerPrefs.GetInt("Types");
+        if (PlayerPrefs.HasKey("Wins")) Wins = PlayerPrefs.GetInt("Wins");
+        if (PlayerPrefs.HasKey("Depth")) Depth = PlayerPrefs.GetInt("Depth");
+        if (PlayerPrefs.HasKey("Types")) Types = PlayerPrefs.GetInt("Types");
+
         if (Types == 0) SetTypes(6);
         if (Depth == 0) SetTypes(2);
     }

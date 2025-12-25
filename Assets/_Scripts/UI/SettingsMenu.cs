@@ -13,7 +13,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void UpdateVisuals()
     {
-        depthText.text = $"Depth: {StatsManager.Depth}";
-        flowerTypesText.text = $"Types: {StatsManager.Types}";
+        depthText.text = $"Layers: {StatsManager.Depth}";
+        flowerTypesText.text = $"Flower Types: {StatsManager.Types}";
     }
 }
